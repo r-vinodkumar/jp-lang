@@ -1,31 +1,25 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Styled Furigana Example</title>
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        p {
-            line-height: 1.5em;
-            text-align: center;
-        }
-        ruby rt {
-            font-size: 0.5em;
-            color: cornflowerblue;
-            font-weight: bold;
-        }
-    </style>
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive HTML</title>
+  <link rel="stylesheet" href="styles.css">  </head>
 <body>
+  <header>
+    <h1>JP-Lang</h1>
+    <nav>
+      <ul>
+        <li>N5</li>
+        <li>N4</li>
+        <li>N3</li>
+        <li>N2</li>
+        <li>N1</li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
     <p>
         （<ruby>聖<rt>ひじり</rt></ruby>）〝先生〞<br>
         “あの<ruby>頃<rt>ころ</rt></ruby>”<br>
@@ -51,5 +45,12 @@
         １年前の今日<br>
         空から<ruby>落<rt>お</rt></ruby>ちてきた隕石にぶつかって<br>
     </p>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
+
