@@ -24,7 +24,7 @@ nav > ul > li {
 main {
     text-align: left;  /* Justify text within the main content */
     margin: 0 auto;        /* Center the main content horizontally */
-    width: 75%;    /* Optional: Adjust width to content (optional) */
+    width: 70%;    /* Optional: Adjust width to content (optional) */
     letter-spacing: 0.3em;
 }
 
