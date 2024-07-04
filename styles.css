@@ -12,23 +12,26 @@ header {
     align-items: center;
 }
 
-nav > ul {
+nav>ul {
     list-style: none;
     padding: 0px 4px;
 }
 
-nav > ul > li {
+nav>ul>li {
     display: inline-block;
 }
 
 .highlight-kanji {
-    color: cornflowerblue; /* You can change the color to your preference */
+    color: cornflowerblue;
+    /* You can change the color to your preference */
     text-decoration: none;
+    position: relative;
 }
 
 .highlight-kanji:hover .tooltip {
     display: block;
 }
+
 .tooltip {
     display: none;
     position: absolute;
@@ -41,9 +44,19 @@ nav > ul > li {
 }
 
 main {
-    text-align: justify;  /* Justify text within the main content */
-    margin: 0 auto;        /* Center the main content horizontally */
-    width: 70%;    /* Optional: Adjust width to content (optional) */
+    text-align: justify;
+    /* Justify text within the main content */
+    margin: 0 auto;
+    /* Center the main content horizontally */
+    width: 70%;
+    /* Optional: Adjust width to content (optional) */
     letter-spacing: 0.3em;
     line-height: 2em;
+}
+
+/* Responsive margins */
+@media (max-width: 768px) {
+    main {
+        width: 95%;
+    }
 }

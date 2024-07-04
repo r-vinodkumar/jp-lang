@@ -27,6 +27,27 @@ document.addEventListener("DOMContentLoaded", function() {
             if (mainElement) {
                 highlightKanji(mainElement);
             }
+
+            // Add event listeners for mobile tooltips
+            document.querySelectorAll('.highlight-kanji').forEach(item => {
+                item.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const tooltip = item.querySelector('.tooltip');
+                    if (tooltip.style.display === 'block') {
+                        tooltip.style.display = 'none';
+                    } else {
+                        document.querySelectorAll('.tooltip').forEach(tip => tip.style.display = 'none');
+                        tooltip.style.display = 'block';
+                    }
+                });
+            });
+
+            // Close tooltips if clicked outside
+            document.addEventListener('click', (event) => {
+                if (!event.target.closest('.highlight-kanji')) {
+                    document.querySelectorAll('.tooltip').forEach(tip => tip.style.display = 'none');
+                }
+            });
         })
         .catch(error => console.error('Error fetching the Kanji readings:', error));
 });
