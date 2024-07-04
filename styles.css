@@ -21,13 +21,29 @@ nav > ul > li {
     display: inline-block;
 }
 
+.highlight-kanji {
+    color: cornflowerblue; /* You can change the color to your preference */
+    text-decoration: none;
+}
+
+.highlight-kanji:hover .tooltip {
+    display: block;
+}
+.tooltip {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    white-space: nowrap;
+}
+
 main {
-    text-align: left;  /* Justify text within the main content */
+    text-align: justify;  /* Justify text within the main content */
     margin: 0 auto;        /* Center the main content horizontally */
     width: 70%;    /* Optional: Adjust width to content (optional) */
     letter-spacing: 0.3em;
-}
-
-ruby {
-    color: cornflowerblue;
+    line-height: 2em;
 }
