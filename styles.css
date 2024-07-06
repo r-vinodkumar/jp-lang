@@ -12,14 +12,23 @@ header {
     align-items: center;
 }
 
-nav>ul {
-    list-style: none;
-    padding: 0px 4px;
-}
+.nav-menu {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-menu li {
+    cursor: pointer;
+  }
+  
+  .menu-icon {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+  }
 
-nav>ul>li {
-    display: inline-block;
-}
+
 
 .highlight-kanji {
     color: cornflowerblue;
@@ -43,6 +52,14 @@ nav>ul>li {
     white-space: nowrap;
 }
 
+.close-icon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000;
+    padding: 10px;
+  }
+
 main {
     text-align: justify;
     /* Justify text within the main content */
@@ -54,8 +71,37 @@ main {
     line-height: 2em;
 }
 
+
+
 /* Responsive margins */
 @media (max-width: 768px) {
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: whitesmoke; 
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 200px;
+        padding: 20px;
+        transform: translateX(100%);
+      }
+    
+      .nav-menu.show {
+        transform: translateX(0);
+      }
+    
+      .menu-icon {
+        display: block;
+      }
+
+      .close-icon {
+        display: block;
+      }
+
+
     main {
         width: 95%;
     }

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Fetch the Kanji readings from the JSON file
-    fetch('kanji-readings.json')
+    fetch('kanji-n5.json')
         .then(response => response.json())
         .then(data => {
             const kanjiList = Object.keys(data);
@@ -51,3 +51,45 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => console.error('Error fetching the Kanji readings:', error));
 });
+
+
+function toggleMenu() {
+    const navMenu = document.querySelector('.nav-menu');
+    navMenu.classList.toggle('show');
+}
+
+
+// Function to fetch and display Kanji data
+  async function loadKanjiData() {
+    try {
+      const response = await fetch('kanji-n5.json');
+      const kanjiData = await response.json();
+      
+      const kanjiContainer = document.getElementById('kanji-container');
+      kanjiContainer.innerHTML = ''; // Clear any existing content
+  
+      for (const [kanji, readings] of Object.entries(kanjiData)) {
+        const kanjiElement = document.createElement('div');
+        kanjiElement.classList.add('kanji-item');
+        
+        const kanjiSymbol = document.createElement('h2');
+        kanjiSymbol.textContent = kanji;
+        
+        const readingsElement = document.createElement('p');
+        readingsElement.textContent = readings.join(', ');
+        
+        kanjiElement.appendChild(kanjiSymbol);
+        kanjiElement.appendChild(readingsElement);
+        kanjiContainer.appendChild(kanjiElement);
+      }
+    } catch (error) {
+      console.error('Error loading Kanji data:', error);
+    }
+  }
+  
+  // Load Kanji data when the document is fully loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('kanji-container')) {
+      loadKanjiData();
+    }
+  });  
