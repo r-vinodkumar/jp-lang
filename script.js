@@ -5,10 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
         navMenu.classList.toggle('show');
     }
 
-    // Add event listeners for menu icons
-    document.querySelector('.menu-icon').addEventListener('click', toggleMenu);
-    document.querySelector('.close-icon').addEventListener('click', toggleMenu);
-
     // Function to fetch and display Kanji data
     async function loadKanjiData(level) {
         try {
@@ -36,18 +32,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Load the default Kanji data for N5 level
-    loadKanjiData('n5');
-
-    // Add event listeners to navigation links to load different levels
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault();
-            toggleMenu();
-            const level = event.target.getAttribute('data-level');
-            loadKanjiData(level);
-        });
-    });
+    // Function to highlight Kanji characters
+    function highlightKanji(node, kanjiList, data) {
+        if (node.nodeType === 3) { // Text node
+            const regex = new RegExp(`(${kanjiList.join('|')})`, 'g');
+            const span = document.createElement('span');
+            span.innerHTML = node.textContent.replace(regex, (match) => {
+                const readings = data[match].join(', ');
+                return `<a href="https://jisho.org/search/${match}%20%23kanji" class="highlight-kanji" target="_blank">${match}<span class="tooltip">${readings}</span></a>`;
+            });
+            node.replaceWith(span);
+        } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') { // Element node
+            for (let i = 0; i < node.childNodes.length; i++) {
+                highlightKanji(node.childNodes[i], kanjiList, data);
+            }
+        }
+    }
 
     // Fetch the Kanji readings from the JSON file
     fetch('kanji-n5.json')
@@ -55,27 +55,10 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             const kanjiList = Object.keys(data);
 
-            // Function to highlight Kanji characters
-            function highlightKanji(node) {
-                if (node.nodeType === 3) { // Text node
-                    const regex = new RegExp(`(${kanjiList.join('|')})`, 'g');
-                    const span = document.createElement('span');
-                    span.innerHTML = node.textContent.replace(regex, (match) => {
-                        const readings = data[match].join(', ');
-                        return `<a href="https://jisho.org/search/${match}%20%23kanji" class="highlight-kanji" target="_blank">${match}<span class="tooltip">${readings}</span></a>`;
-                    });
-                    node.replaceWith(span);
-                } else if (node.nodeType === 1 && node.tagName !== 'SCRIPT' && node.tagName !== 'STYLE') { // Element node
-                    for (let i = 0; i < node.childNodes.length; i++) {
-                        highlightKanji(node.childNodes[i]);
-                    }
-                }
-            }
-
             // Start highlighting from the main element
             const mainElement = document.querySelector('main');
             if (mainElement) {
-                highlightKanji(mainElement);
+                highlightKanji(mainElement, kanjiList, data);
             }
 
             // Add event listeners for mobile tooltips
@@ -100,4 +83,10 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         })
         .catch(error => console.error('Error fetching the Kanji readings:', error));
+
+    // Load the default Kanji data for N5 level
+    loadKanjiData('n5');
+
+    // Header related functionality (initialized once header is loaded)
+    initializeHeaderScripts();
 });
