@@ -66,8 +66,8 @@ main {
   text-align: justify;
   margin: 0 auto;
   width: 70%;
-  letter-spacing: 0.2em;
-  line-height: 2em;
+  letter-spacing: 0.15em;
+  line-height: 2.5em;
 }
 
 @media (max-width: 768px) {
