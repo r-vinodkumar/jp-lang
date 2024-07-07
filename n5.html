@@ -1,25 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>N5 Kanji</title>
-  <link rel="stylesheet" href="styles.css">
-  <!-- Include JavaScript to dynamically load header -->
-  <script src="header.js"></script>
+  <title>N5</title>
 </head>
 
 <body>
-
-  <!-- Placeholder for header -->
-  <div id="header-placeholder"></div>
-
-
-  <main>
-    <div id="kanji-container"></div>
+  <main id="content">
+    <h2>N5 Content</h2>
+    <p>This is the content for N5 level.</p>
+    <!-- More content can be added here -->
   </main>
-  <script src="script.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const content = document.getElementById('content');
+
+      fetch('kanji-n5.json')
+        .then(response => response.json())
+        .then(data => {
+          Object.entries(data).forEach(([kanji, readings]) => {
+            const itemElement = document.createElement('div');
+            itemElement.innerHTML = `
+              <h2>${kanji}</h2>
+              <p>Readings: ${readings.join(', ')}</p>
+            `;
+            content.appendChild(itemElement);
+          });
+        })
+        .catch(error => console.error('Error fetching JSON:', error));
+    });
+  </script>
+
 </body>
 
 </html>
