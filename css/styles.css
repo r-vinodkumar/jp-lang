@@ -45,7 +45,7 @@ a {
   padding: 10px;
 }
 
-main {
+main, p {
   margin: auto;
   text-align: justify;
   width: 75%;
@@ -83,7 +83,7 @@ main {
     display: block;
   }
 
-  main {
+  main, p {
     width: 95%;
   }
 }
