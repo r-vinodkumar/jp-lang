@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N5</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .calendar {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #month-name {
+            margin: 0;
+        }
+
+        .calendar-body {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            border-top: 1px solid #ddd;
+        }
+
+        .day-name,
+        .day {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+        }
+
+        .day-name {
+            background-color: #f9f9f9;
+            font-weight: bold;
+        }
+
+        .day {
+            background-color: #fff;
+        }
+
+        .day-name:first-child,
+        .day:first-child {
+            border-left: 1px solid #ddd;
+        }
+
+        .day-name:nth-child(7n),
+        .day:nth-child(7n) {
+            border-right: none;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div id="header-container"></div>
+
+    <main>
+        <div class="calendar">
+            <div class="calendar-header">
+                <button id="prev-month">前</button>
+                <h1 id="month-name"></h1>
+                <button id="next-month">次</button>
+            </div>
+            <div class="calendar-body">
+                <div class="day-name">日</div> <!-- Sunday -->
+                <div class="day-name">月</div> <!-- Monday -->
+                <div class="day-name">火</div> <!-- Tuesday -->
+                <div class="day-name">水</div> <!-- Wednesday -->
+                <div class="day-name">木</div> <!-- Thursday -->
+                <div class="day-name">金</div> <!-- Friday -->
+                <div class="day-name">土</div> <!-- Saturday -->
+                <!-- Dates will be added here dynamically -->
+            </div>
+        </div>
+    </main>
+
+    <script src="js/loadHeader.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/calender.js"></script>
+
+    <footer>
+        <p>&copy; 2024 All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
